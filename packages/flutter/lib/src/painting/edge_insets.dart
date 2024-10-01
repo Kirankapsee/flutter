@@ -53,12 +53,12 @@ abstract class EdgeInsetsGeometry {
 
   /// Whether every dimension is non-negative.
   bool get isNonNegative {
-    return _left >= 0.0
-        && _right >= 0.0
-        && _start >= 0.0
-        && _end >= 0.0
-        && _top >= 0.0
-        && _bottom >= 0.0;
+    return _left >= 0.0 &&
+        _right >= 0.0 &&
+        _start >= 0.0 &&
+        _end >= 0.0 &&
+        _top >= 0.0 &&
+        _bottom >= 0.0;
   }
 
   /// The total offset in the horizontal direction.
@@ -71,7 +71,7 @@ abstract class EdgeInsetsGeometry {
   double along(Axis axis) {
     return switch (axis) {
       Axis.horizontal => horizontal,
-      Axis.vertical   => vertical,
+      Axis.vertical => vertical,
     };
   }
 
@@ -79,7 +79,8 @@ abstract class EdgeInsetsGeometry {
   Size get collapsedSize => Size(horizontal, vertical);
 
   /// An [EdgeInsetsGeometry] with top and bottom, left and right, and start and end flipped.
-  EdgeInsetsGeometry get flipped => _MixedEdgeInsets.fromLRSETB(_right, _left, _end, _start, _bottom, _top);
+  EdgeInsetsGeometry get flipped =>
+      _MixedEdgeInsets.fromLRSETB(_right, _left, _end, _start, _bottom, _top);
 
   /// Returns a new size that is bigger than the given size by the amount of
   /// inset in the horizontal and vertical directions.
@@ -264,36 +265,36 @@ abstract class EdgeInsetsGeometry {
         return 'EdgeInsets.all(${_left.toStringAsFixed(1)})';
       }
       return 'EdgeInsets(${_left.toStringAsFixed(1)}, '
-                        '${_top.toStringAsFixed(1)}, '
-                        '${_right.toStringAsFixed(1)}, '
-                        '${_bottom.toStringAsFixed(1)})';
+          '${_top.toStringAsFixed(1)}, '
+          '${_right.toStringAsFixed(1)}, '
+          '${_bottom.toStringAsFixed(1)})';
     }
     if (_left == 0.0 && _right == 0.0) {
       return 'EdgeInsetsDirectional(${_start.toStringAsFixed(1)}, '
-                                   '${_top.toStringAsFixed(1)}, '
-                                   '${_end.toStringAsFixed(1)}, '
-                                   '${_bottom.toStringAsFixed(1)})';
+          '${_top.toStringAsFixed(1)}, '
+          '${_end.toStringAsFixed(1)}, '
+          '${_bottom.toStringAsFixed(1)})';
     }
     return 'EdgeInsets(${_left.toStringAsFixed(1)}, '
-                      '${_top.toStringAsFixed(1)}, '
-                      '${_right.toStringAsFixed(1)}, '
-                      '${_bottom.toStringAsFixed(1)})'
-           ' + '
-           'EdgeInsetsDirectional(${_start.toStringAsFixed(1)}, '
-                                 '0.0, '
-                                 '${_end.toStringAsFixed(1)}, '
-                                 '0.0)';
+        '${_top.toStringAsFixed(1)}, '
+        '${_right.toStringAsFixed(1)}, '
+        '${_bottom.toStringAsFixed(1)})'
+        ' + '
+        'EdgeInsetsDirectional(${_start.toStringAsFixed(1)}, '
+        '0.0, '
+        '${_end.toStringAsFixed(1)}, '
+        '0.0)';
   }
 
   @override
   bool operator ==(Object other) {
-    return other is EdgeInsetsGeometry
-        && other._left == _left
-        && other._right == _right
-        && other._start == _start
-        && other._end == _end
-        && other._top == _top
-        && other._bottom == _bottom;
+    return other is EdgeInsetsGeometry &&
+        other._left == _left &&
+        other._right == _right &&
+        other._start == _start &&
+        other._end == _end &&
+        other._top == _top &&
+        other._bottom == _bottom;
   }
 
   @override
@@ -360,10 +361,10 @@ class EdgeInsets extends EdgeInsetsGeometry {
   /// ```
   /// {@end-tool}
   const EdgeInsets.all(double value)
-    : left = value,
-      top = value,
-      right = value,
-      bottom = value;
+      : left = value,
+        top = value,
+        right = value,
+        bottom = value;
 
   /// Creates insets with only the given values non-zero.
   ///
@@ -395,10 +396,10 @@ class EdgeInsets extends EdgeInsetsGeometry {
   const EdgeInsets.symmetric({
     double vertical = 0.0,
     double horizontal = 0.0,
-  }) : left = horizontal,
-       top = vertical,
-       right = horizontal,
-       bottom = vertical;
+  })  : left = horizontal,
+        top = vertical,
+        right = horizontal,
+        bottom = vertical;
 
   /// Creates insets that match the given view padding.
   ///
@@ -407,10 +408,10 @@ class EdgeInsets extends EdgeInsetsGeometry {
   /// using the value from a [FlutterView] directly, so that you get notified of
   /// changes.
   EdgeInsets.fromViewPadding(ui.ViewPadding padding, double devicePixelRatio)
-    : left = padding.left / devicePixelRatio,
-      top = padding.top / devicePixelRatio,
-      right = padding.right / devicePixelRatio,
-      bottom = padding.bottom / devicePixelRatio;
+      : left = padding.left / devicePixelRatio,
+        top = padding.top / devicePixelRatio,
+        right = padding.right / devicePixelRatio,
+        bottom = padding.bottom / devicePixelRatio;
 
   /// Deprecated. Will be removed in a future version of Flutter.
   ///
@@ -419,7 +420,8 @@ class EdgeInsets extends EdgeInsetsGeometry {
     'Use EdgeInsets.fromViewPadding instead. '
     'This feature was deprecated after v3.8.0-14.0.pre.',
   )
-  factory EdgeInsets.fromWindowPadding(ui.ViewPadding padding, double devicePixelRatio) = EdgeInsets.fromViewPadding;
+  factory EdgeInsets.fromWindowPadding(ui.ViewPadding padding, double devicePixelRatio) =
+      EdgeInsets.fromViewPadding;
 
   /// An [EdgeInsets] with zero offsets in each direction.
   static const EdgeInsets zero = EdgeInsets.only();
@@ -485,7 +487,8 @@ class EdgeInsets extends EdgeInsetsGeometry {
   ///  * [inflateSize], to inflate a [Size] rather than a [Rect].
   ///  * [deflateRect], to deflate a [Rect] rather than inflating it.
   Rect inflateRect(Rect rect) {
-    return Rect.fromLTRB(rect.left - left, rect.top - top, rect.right + right, rect.bottom + bottom);
+    return Rect.fromLTRB(
+        rect.left - left, rect.top - top, rect.right + right, rect.bottom + bottom);
   }
 
   /// Returns a new rect that is smaller than the given rect in each direction by
@@ -502,7 +505,8 @@ class EdgeInsets extends EdgeInsetsGeometry {
   ///  * [deflateSize], to deflate a [Size] rather than a [Rect].
   ///  * [inflateRect], to inflate a [Rect] rather than deflating it.
   Rect deflateRect(Rect rect) {
-    return Rect.fromLTRB(rect.left + left, rect.top + top, rect.right - right, rect.bottom - bottom);
+    return Rect.fromLTRB(
+        rect.left + left, rect.top + top, rect.right - right, rect.bottom - bottom);
   }
 
   @override
@@ -715,10 +719,10 @@ class EdgeInsetsDirectional extends EdgeInsetsGeometry {
   /// ```
   /// {@end-tool}
   const EdgeInsetsDirectional.all(double value)
-    : start = value,
-      top = value,
-      end = value,
-      bottom = value;
+      : start = value,
+        top = value,
+        end = value,
+        bottom = value;
 
   /// An [EdgeInsetsDirectional] with zero offsets in each direction.
   ///
@@ -924,7 +928,8 @@ class EdgeInsetsDirectional extends EdgeInsetsGeometry {
 }
 
 class _MixedEdgeInsets extends EdgeInsetsGeometry {
-  const _MixedEdgeInsets.fromLRSETB(this._left, this._right, this._start, this._end, this._top, this._bottom);
+  const _MixedEdgeInsets.fromLRSETB(
+      this._left, this._right, this._start, this._end, this._top, this._bottom);
 
   @override
   final double _left;
@@ -946,12 +951,12 @@ class _MixedEdgeInsets extends EdgeInsetsGeometry {
 
   @override
   bool get isNonNegative {
-    return _left >= 0.0
-        && _right >= 0.0
-        && _start >= 0.0
-        && _end >= 0.0
-        && _top >= 0.0
-        && _bottom >= 0.0;
+    return _left >= 0.0 &&
+        _right >= 0.0 &&
+        _start >= 0.0 &&
+        _end >= 0.0 &&
+        _top >= 0.0 &&
+        _bottom >= 0.0;
   }
 
   @override
